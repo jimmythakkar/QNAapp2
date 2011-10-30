@@ -3,15 +3,16 @@ Demon::Application.routes.draw do
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :questions, :only => [:create, :destroy]
+
   
-   match '/signup',  :to =>  'users#new'  #to be eliminated in 6.3.3
+   match '/signup',  :to =>  'users#new'  
    match '/signin',  :to =>  'sessions#new'
    match 'signout',  :to => 'sessions#destroy'
    match '/contact', :to => 'pages#contact'
    match '/about',   :to => 'pages#about'
 
    root :to => 'pages#home'
-   #root :to => 'pages#home'
    
   # The priority is based upon order of creation:
   # first created -> highest priority.

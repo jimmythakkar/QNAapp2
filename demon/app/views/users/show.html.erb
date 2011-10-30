@@ -4,11 +4,18 @@
       <h1>
         <%= @user.name %>
       </h1>
+    <% if @user.questions.any? %>
+        <table class="questions" summary="User questions">
+          <%= render @questions %>
+        </table>
+      <% end %>
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+      <strong>Questions</strong> <%= @user.questions.count %>
     </td>
   </tr>
 </table>
+
 

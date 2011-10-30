@@ -1,0 +1,18 @@
+<tr>
+  <td class="question">
+    <span class="content"><%= question.content %></span>
+    <span class="timestamp">
+      Asked <%= time_ago_in_words(question.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_user?(question.user) %>
+   <td>
+     <%= link_to "delete", question, :method => :delete,
+                                     :confirm => "You sure?",
+                                     :title => question.content %>
+   </td>
+  <% end %>
+
+   
+</tr>
+

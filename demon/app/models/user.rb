@@ -2,6 +2,7 @@ require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name,:email, :password ,:password_confirmation
+  has_many :questions, :dependent => :destroy
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name,:presence => true,
                 :length => { :maximum => 40 }
@@ -19,6 +20,11 @@ class User < ActiveRecord::Base
     encrypted_password == encrypt(submitted_password)
   end
 
+  #def feed
+   # Question.where("user_id = ?", id)
+  #end
+  
+
   def self.authenticate(email, submitted_password)
     user = find_by_email(email)
     return nil  if user.nil?
@@ -30,7 +36,7 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
-
+  
   private
 
     def encrypt_password

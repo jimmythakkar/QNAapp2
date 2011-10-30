@@ -1,0 +1,6 @@
+<% unless @feed_items.empty? %>
+  <table class="Questions" summary="User questions">
+    <%= render :partial => 'shared/feed_item', :collection => @feed_items %>
+  </table>
+<% end %>
+
